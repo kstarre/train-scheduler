@@ -9,33 +9,72 @@
 
 	<!-- Optional theme -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+	<link rel="stylesheet" href="assets/css/style.css">
 
 	<script src="https://www.gstatic.com/firebasejs/4.1.1/firebase.js"></script>
 </head>
 <body>
 	<div class="container">
+
 		<div class="row">
 			<div class="col-md-12">
 				<header class="jumbotron">
 				  <h1>No train? Great pain :(</h1>
-				  <p>Keep all your trains in one place</p>
+				  <p>Keep all your trains in one place so you'll never lose track again.</p>
 				</header>
 			</div>
 		</div>
+
 		<div class="row">
 			<div class="col-md-12">
 				<div class="panel panel-default">
-				  <!-- Default panel contents -->
 				  <div class="panel-heading">Current Train Schedule</div>
-
-				  <!-- Table -->
 				  <table class="table">
-				    ...
+				    <tr>
+				    	<th>Train Name</th>
+				    	<th>Destination</th>
+				    	<th>Frequency (min)</th>
+				    	<th>Next Arrival</th>
+				    	<th>Minutes Away</th>
+				    </tr>
+				    <tr>
+				    	<td>Trenton Express</td>
+				    	<td>Trenton</td>
+						<td>65</td>
+						<td>5:45</td>
+						<td>80</td>
+				    </tr>
 				  </table>
 				</div>
 			</div>
 		</div>
-
+	
+		<div class="row">
+			<div class="col-md-12">
+				<div class="panel panel-default">
+					<div class="panel-heading">Add Train</div>
+					<form>
+						<div class="form-group">
+					    	<label for="train-name-input">Train Name</label>
+					    	<input type="text" class="form-control" id="train-name-input" placeholder="Train name" required>
+						</div>
+						<div class="form-group">
+					    	<label for="destination-input">Destination</label>
+					    	<input type="text" class="form-control" id="destination-input" placeholder="What is the final stop?" required>
+						</div>
+						<div class="form-group">
+							<label for="train-time-input">First Train Time (military time)</label>
+							<input type="text" class="form-control" id="train-time-input" placeholder="HH:mm" required>
+						</div>
+						<div class="form-group">
+							<label for="frequency-input">Frequency (min)</label>
+							<input type="number" class="form-control" id="frequency-input" placeholder="The train runs every X minutes..." required>
+						</div>
+						<button type="submit" class="btn btn-default">Submit</button>
+					</form>
+				</div>
+			</div>
+		</div>
 
 	</div>
 
