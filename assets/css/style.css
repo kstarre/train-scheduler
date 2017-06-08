@@ -1,3 +1,23 @@
+body {
+	background: url("../images/circles-and-roundabouts/circles-and-roundabouts.png.png");
+}
 .jumbotron {
 	text-align: center;
+	font-family: "Oleo Script", cursive;
+	color: #fff;
+	background: url("../images/zig-zag-wool/zig-zag-wool.png");
+}
+form {
+	margin: 10px;
+}
+.panel-default>.panel-heading {
+	background-color: #2e4444;
+	background-image: none;
+	color: #f7f7f7;
+}
+.btn-default {
+	background-image: none;
+	color: #f7f7f7;
+	background-color: #2e4444;
+	text-shadow: none;
 }

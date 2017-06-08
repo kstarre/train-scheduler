@@ -40,12 +40,10 @@ $(document).ready(function() {
 		}
 		if ( nextTrain >= moment() ) {
 			nextTrain = moment(nextTrain).format("hh:mm A");
+			untilNextTrain = moment().diff(nextTrain);
 		}
-	};
 
-/*	function minutesToCalc() {
-		untilNextTrain = moment(nextTrain).to( moment() ).format("mm");
-	}*/
+	};
 
 	$("#add-train").on("click", function() {
 
@@ -63,6 +61,9 @@ $(document).ready(function() {
 			firstTrain: firstTrain,
 			trainInterval: trainInterval
 		});
+
+		// Calculate next train...
+		nextTrainCalc();
 
 		// Display in html...
 		renderTableInfo();
@@ -84,7 +85,6 @@ $(document).ready(function() {
 			name = thisObject.name;
 			trainInterval = thisObject.trainInterval;
 			nextTrainCalc();
-
 			renderTableInfo();
 		}
 
