@@ -39,10 +39,11 @@ $(document).ready(function() {
 			nextTrain.add(trainInterval, 'm');
 		}
 		if ( nextTrain >= moment() ) {
-			nextTrain = moment(nextTrain).format("hh:mm A");
-			untilNextTrain = moment().diff(nextTrain);
+			nextTrain = moment(nextTrain);
+			untilNextTrain = nextTrain.diff( moment() );
+			nextTrain = nextTrain.format("hh:mm A");
+			untilNextTrain = Math.floor(untilNextTrain / 60000);
 		}
-
 	};
 
 	$("#add-train").on("click", function() {
