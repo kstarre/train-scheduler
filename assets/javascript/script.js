@@ -17,18 +17,35 @@ $(document).ready(function() {
 	var trainInterval = 0;
 	var nextTrain = 0;
 	var untilNextTrain = 0;
-	var time = moment().format("hh:mm A");
 
-	console.log(time);
+
 
 	function renderTableInfo() {
 		var newRow = $("<tr>");
 		var tableData = newRow.html("<td>" + name + "</td>");
 		tableData.append("<td>" + destination + "</td>");
-		tableData.append("<td>" + firstTrain + "</td>");
+		tableData.append("<td>" + trainInterval + "</td>");
+		tableData.append("<td>" + nextTrain + "</td>");
+		tableData.append("<td>" + untilNextTrain + "</td>");
 		$("#trainTable").append(newRow);
 
 	};
+
+	function nextTrainCalc() {
+
+		nextTrain = moment(firstTrain, "HH:mm");
+
+		while ( nextTrain.isBefore( moment() ) ) {
+			nextTrain.add(trainInterval, 'm');
+		}
+		if ( nextTrain >= moment() ) {
+			nextTrain = moment(nextTrain).format("hh:mm A");
+		}
+	};
+
+/*	function minutesToCalc() {
+		untilNextTrain = moment(nextTrain).to( moment() ).format("mm");
+	}*/
 
 	$("#add-train").on("click", function() {
 
@@ -38,9 +55,6 @@ $(document).ready(function() {
 		destination = $("#destination-input").val().trim();
 		firstTrain = $("#train-time-input").val().trim();
 		trainInterval = $("#frequency-input").val().trim();
-		// Figure out calculation for nextTrain and untilNextTrain
-		// it will need to calculate from first train time (array?)
-		var timeMill = trainInterval * 60000;
 
 		// Push to firebase array...
 		database.ref().push( {
@@ -68,6 +82,9 @@ $(document).ready(function() {
 			destination = thisObject.destination;
 			firstTrain = thisObject.firstTrain;
 			name = thisObject.name;
+			trainInterval = thisObject.trainInterval;
+			nextTrainCalc();
+
 			renderTableInfo();
 		}
 
